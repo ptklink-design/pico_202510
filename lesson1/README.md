@@ -5,7 +5,7 @@
 下面是git初始化設定
 
 ```base
-git config --global user.neme "PeterK"
+git config --global user.name "PeterK"
 git config --global user.email "ptkklink@gmail.com"
 git config --global pull.rebase false
 ```
