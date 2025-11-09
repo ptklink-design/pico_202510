@@ -1,0 +1,7 @@
+[project]
+name = "pico-202510"
+version = "0.1.0"
+description = "pico-python"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
