@@ -539,7 +539,7 @@ with st.sidebar:
             with st.spinner("正在發送數據..."):
                 if publish_data(light_status=light_switch, temperature=temp_value, humidity=humidity_value):
                     st.success("✓ 數據已成功發送！")
-                    st.balloons()
+
                 else:
                     st.error("✗ 發送失敗，請檢查：\n1. 發佈器是否已啟動\n2. MQTT Broker 是否運行")
     
@@ -577,7 +577,7 @@ with st.sidebar:
                             result = publish_data(test_message=test_message)
                             if result:
                                 st.success(f"✓ 測試訊息已成功發送到 `{MQTT_TOPIC}`！")
-                                st.balloons()
+
                                 st.info(f"💡 提示：請確保訂閱器已連接以查看收到的訊息")
                             else:
                                 st.error("✗ 發送失敗，請檢查終端機的錯誤訊息")
@@ -700,7 +700,7 @@ if len(st.session_state.data_history) > 0:
     # 時間範圍選擇
     col1, col2 = st.columns([3, 1])
     with col1:
-        if len(df) > 1:
+        if len(df) > 10:
             time_range = st.slider(
                 "顯示時間範圍（最近 N 筆數據）",
                 min_value=10,
@@ -811,3 +811,9 @@ else:
 
 # 注意：不自動啟動，需要用戶手動點擊連接按鈕
 # 這樣可以避免連接問題和更好的用戶控制
+
+# 自動更新機制
+if st.sidebar.checkbox("🔄 自動重新整理", value=True, help="勾選此項以每秒自動更新頁面數據"):
+    time.sleep(1)
+    st.rerun()
+
